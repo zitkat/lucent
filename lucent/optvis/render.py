@@ -41,6 +41,7 @@ def render_vis(
     image_name=None,
     show_inline=False,
     fixed_image_size=None,
+    desc="",
 ):
     if param_f is None:
         param_f = lambda: param.image(128)
@@ -90,7 +91,7 @@ def render_vis(
 
     images = []
     try:
-        for i in tqdm(range(1, max(thresholds) + 1), disable=(not progress)):
+        for i in tqdm(range(1, max(thresholds) + 1), ncols=100, desc=desc, disable=(not progress)):
             def closure():
                 optimizer.zero_grad()
                 try:
